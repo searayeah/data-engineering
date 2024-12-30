@@ -1,0 +1,41 @@
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: seara
+      POSTGRES_PASSWORD: 176817
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - postgres_pgadmin
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: seara@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 176817
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+    ports:
+      - 228:80
+    networks:
+      - postgres_pgadmin
+    restart: unless-stopped
+
+networks:
+  postgres_pgadmin:
+    name: postgres_pgadmin
+
+volumes:
+  postgres:
+    name: postgres
+  pgadmin:
+    name: pgadmin

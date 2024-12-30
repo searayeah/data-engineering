@@ -1,0 +1,5 @@
+[sqlfluff]
+dialect = postgres
+
+[sqlfluff:rules]
+comma_style = leading

@@ -1,0 +1,1 @@
+0 7 * * * python main.py > logs.log 2>&1
